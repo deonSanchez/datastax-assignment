@@ -25,7 +25,6 @@ class GetView extends React.Component {
     const url = "/put-url";
     const config = { 
       headers: { 
-        'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin' : '*'
       } 
     }

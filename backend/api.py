@@ -1,43 +1,56 @@
-import os
 import boto3
-
+from botocore.exceptions import ClientError
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
-BUCKET_NAME = os.environ.get('BUCKET_NAME')
 
 
 @app.route('/post-file', methods=['POST'])
 def s3_post():
-    if request.method == "POST":
-        file = request.files["file"]
+    """ Post request to insert file to s3 bucket """
+    file = request.files["file"]
+    try:
         client = boto3.client('s3')
-        client.put_object(Body=file,
-                          Bucket=BUCKET_NAME,
-                          Key=file.filename,
-                          ContentType=request.mimetype)
+        client.put_object(
+            Body=file,
+            Bucket='datastax-assignment-folder',
+            Key=file.filename,
+            ContentType=request.mimetype)
+    except ClientError as error:
+        raise error
+
     return "file uploaded"
 
 
 @app.route('/get-list', methods=['GET'])
 def s3_get_list():
+    """ Get request to view contents in s3 bucket """
     bucket_items = list()
-    s3 = boto3.resource('s3')
-    bucket = s3.Bucket(BUCKET_NAME)
-    for file in bucket.objects.all():
-        bucket_items.append(file.key)
+    try:
+        resource = boto3.resource('s3')
+        bucket = resource.Bucket('datastax-assignment-folder')
+
+        for file in bucket.objects.all():
+            bucket_items.append(file.key)
+    except ClientError as error:
+        raise error
+
     return jsonify(items=bucket_items)
 
 
 @app.route('/put-url', methods=['PUT'])
 def s3_put_url():
-    if request.method == "PUT":
-        file = request.form["file"]
+    """ Put request to generate temporary URL from s3 bucket"""
+    file = request.form["file"]
+    try:
         client = boto3.client('s3')
-        response = client.generate_presigned_url(ClientMethod='get_object',
-                                                 Params={'Bucket': BUCKET_NAME, 'Key': file},
-                                                 ExpiresIn=60)
-        return response
+        response = client.generate_presigned_url(
+            ClientMethod='get_object',
+            Params={'Bucket': 'datastax-assignment-folder', 'Key': file},
+            ExpiresIn=60)  # 60 second expiration
+    except ClientError as error:
+        raise error
+    return response
 
 
 if __name__ == "__main__":
