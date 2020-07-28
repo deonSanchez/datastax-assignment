@@ -16,6 +16,6 @@ Runs the app in the development mode.<br />
 Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to view it in the browser.
 
 
-**Hosted on AWS Cloudfront**
+**Hosted on AWS Elastic Beanstalk**
 
-[https://deonsanchez.com](https://deonsanchez.com)
+[http://datastaxsassignment-env-1.eba-mrkuxdby.us-east-1.elasticbeanstalk.com/](http://datastaxsassignment-env-1.eba-mrkuxdby.us-east-1.elasticbeanstalk.com/)
