@@ -1,5 +1,5 @@
 **Datastax's Assignment** <br />
-ReactJs Website with Flask Backend
+ReactJs Frontend with Python Flask Backend
 
 Run Code with:
 
