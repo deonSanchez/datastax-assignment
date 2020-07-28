@@ -1,7 +1,7 @@
 **Datastax's Assignment** <br />
 ReactJs Frontend with Python Flask Backend
 
-Run Code with:
+Served with Flask backend:
 
 ```
 cd backend
@@ -10,6 +10,13 @@ cd venv && Scripts\activate
 cd ..
 pip install -r requirements.txt
 flask run
+```
+<br />
+To run frontend independently 
+```
+cd frontend
+npm install 
+npm start
 ```
 
 Runs the app in the development mode.<br />
