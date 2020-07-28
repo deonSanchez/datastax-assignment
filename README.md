@@ -11,16 +11,19 @@ cd ..
 pip install -r requirements.txt
 flask run
 ```
+
 <br />
-To run frontend independently 
+Runs the app in the development mode.<br />
+Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to view it in the browser.
+
+<br />
+To run frontend independently:
+
 ```
 cd frontend
 npm install 
 npm start
 ```
-
-Runs the app in the development mode.<br />
-Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to view it in the browser.
 
 
 **Hosted on AWS Elastic Beanstalk**
