@@ -1,4 +1,5 @@
 import boto3
+import os
 from botocore.exceptions import ClientError
 from flask import Flask, jsonify, request, render_template
 
@@ -17,7 +18,13 @@ def s3_post():
     """ Post request to insert file to s3 bucket """
     file = request.files["file"]
     try:
-        client = boto3.client('s3')
+        client = boto3.client(
+            service_name='s3',
+            aws_access_key_id=os.environ.get('AWS_ACCESS_KEY'),
+            aws_secret_access_key=os.environ.get('AWS_SECRET_KEY'),
+            region_name='us-east-1'
+        )
+
         client.put_object(
             Body=file,
             Bucket='datastax-assignment-folder',
@@ -34,8 +41,13 @@ def s3_get_list():
     """ Get request to view contents in s3 bucket """
     bucket_items = list()
     try:
-        resource = boto3.resource('s3')
-        bucket = resource.Bucket('datastax-assignment-folder')
+        session = boto3.Session(
+            aws_access_key_id=os.environ.get('AWS_ACCESS_KEY'),
+            aws_secret_access_key=os.environ.get('AWS_SECRET_KEY'),
+            region_name='us-east-1'
+        )
+        s3 = session.resource('s3')
+        bucket = s3.Bucket('datastax-assignment-folder')
 
         for file in bucket.objects.all():
             bucket_items.append(file.key)
@@ -50,7 +62,12 @@ def s3_put_url():
     """ Put request to generate temporary URL from s3 bucket"""
     file = request.form["file"]
     try:
-        client = boto3.client('s3')
+        client = boto3.client(
+            service_name='s3',
+            aws_access_key_id=os.environ.get('AWS_ACCESS_KEY'),
+            aws_secret_access_key=os.environ.get('AWS_SECRET_KEY'),
+            region_name='us-east-1'
+        )
         response = client.generate_presigned_url(
             ClientMethod='get_object',
             Params={'Bucket': 'datastax-assignment-folder', 'Key': file},
