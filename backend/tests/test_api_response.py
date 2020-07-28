@@ -2,13 +2,13 @@ import io
 import boto3
 import unittest
 
-from api import app
+from api import application
 
 
 class TestAPIResponse(unittest.TestCase):
 
     def test_post(self):
-        client = app.test_client()
+        client = application.test_client()
         # Creates test data
         post_data = dict(file=(io.BytesIO(b"Test Text"), 'Test.txt'))
         # Response for HTML method
@@ -17,7 +17,7 @@ class TestAPIResponse(unittest.TestCase):
         self.assertEqual(post_response.status_code, 200)
 
     def test_put(self):
-        client = app.test_client()
+        client = application.test_client()
         # Creates test data
         put_data = dict(file='Test.txt')
         # Response for HTML method
@@ -26,7 +26,7 @@ class TestAPIResponse(unittest.TestCase):
         self.assertEqual(put_response.status_code, 200)
 
     def test_get(self):
-        client = app.test_client()
+        client = application.test_client()
         # Response for HTML method
         get_response = client.get('/get-list')
         # Test for response methods

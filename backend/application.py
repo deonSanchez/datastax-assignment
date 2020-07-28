@@ -3,17 +3,17 @@ import os
 from botocore.exceptions import ClientError
 from flask import Flask, jsonify, request, render_template
 
-app = Flask(__name__, static_folder="build/static", template_folder="build")
+application = Flask(__name__, static_folder="build/static", template_folder="build")
 
 
-@app.route("/")
-@app.route("/get")
+@application.route("/")
+@application.route("/get")
 def index():
     """ Renders Website """
     return render_template("index.html")
 
 
-@app.route('/post-file', methods=['POST'])
+@application.route('/post-file', methods=['POST'])
 def s3_post():
     """ Post request to insert file to s3 bucket """
     file = request.files["file"]
@@ -36,7 +36,7 @@ def s3_post():
     return "file uploaded"
 
 
-@app.route('/get-list', methods=['GET'])
+@application.route('/get-list', methods=['GET'])
 def s3_get_list():
     """ Get request to view contents in s3 bucket """
     bucket_items = list()
@@ -57,7 +57,7 @@ def s3_get_list():
     return jsonify(items=bucket_items)
 
 
-@app.route('/put-url', methods=['PUT'])
+@application.route('/put-url', methods=['PUT'])
 def s3_put_url():
     """ Put request to generate temporary URL from s3 bucket"""
     file = request.form["file"]
@@ -78,4 +78,4 @@ def s3_put_url():
 
 
 if __name__ == "__main__":
-    app.run()
+    application.run()
