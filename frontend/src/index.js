@@ -7,6 +7,7 @@ import MainView from './Views/MainView';
 import Header from './Components/Header';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "animate.css/animate.min.css";
 
 
 const App = () => (

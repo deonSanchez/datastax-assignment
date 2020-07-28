@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Form, Button } from 'react-bootstrap';
+import ScrollAnimation from 'react-animate-on-scroll';
 import axios from 'axios';
 
 
@@ -46,18 +47,20 @@ class SendView extends React.Component {
 
   render() {
     return (
-      <Container className="my-3">
-        <h4 className="text-white" style={styles.textBorder}>Upload File to S3 Bucket</h4>
+      <ScrollAnimation animateIn="fadeInUp">
+        <Container className="my-3">
+          <h4 className="text-white" style={styles.textBorder}>Upload File to S3 Bucket</h4>
 
-        <Form>
-          <Form.File
-            onChange={this.onChangeHandler.bind(this)}
-            label={this.state.path}
-            custom
-          />
-          <Button className="mt-3 text-white" style={styles.secondaryBGColor} disabled={this.state.file === null ? true : false} onClick={this.onClickHandler.bind(this)}>Upload File</Button>
-        </Form>
-      </Container>
+          <Form>
+            <Form.File
+              onChange={this.onChangeHandler.bind(this)}
+              label={this.state.path}
+              custom
+            />
+            <Button className="mt-3 text-white" style={styles.secondaryBGColor} disabled={this.state.file === null ? true : false} onClick={this.onClickHandler.bind(this)}>Upload File</Button>
+          </Form>
+        </Container>
+      </ScrollAnimation>
     );
   }
 };

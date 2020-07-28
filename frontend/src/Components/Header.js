@@ -4,6 +4,7 @@ import { NavLink as Link } from 'react-router-dom';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FaDownload, FaUpload } from 'react-icons/fa';
 
+
 import logo from '../Assets/datastax.jpg';
 import './Header.css';
 
@@ -13,10 +14,10 @@ export default function Header() {
     <Container fluid className="bg-white pb-2" style={styles.containerBorder}>
       <Row className="justify-content-center">
         <Col className="pr-0 mt-1">
-          <Image fluid className="float-right mt-1" src={logo} alt="datastax logo"/>
+          <Image fluid className="float-right mt-1" src={logo} alt="datastax logo" />
         </Col>
-        <Col style={{marginTop: "1.7rem", letterSpacing: "3px"}}>
-        <h4 className="text-uppercase font-weight-bold">Assignment</h4>
+        <Col style={{ marginTop: "1.7rem", letterSpacing: "3px" }}>
+          <h4 className="text-uppercase font-weight-bold">Assignment</h4>
         </Col>
       </Row>
 

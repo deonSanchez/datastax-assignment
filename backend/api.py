@@ -1,8 +1,15 @@
 import boto3
 from botocore.exceptions import ClientError
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="build/static", template_folder="build")
+
+
+@app.route("/")
+@app.route("/get")
+def index():
+    """ Renders Website """
+    return render_template("index.html")
 
 
 @app.route('/post-file', methods=['POST'])
