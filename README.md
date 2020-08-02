@@ -27,6 +27,6 @@ npm start
 ```
 
 
-**Hosted on AWS Elastic Beanstalk**
+**Hosted on AWS Elastic Beanstalk** (no longer running)
 
 [http://datastaxsassignment-env-1.eba-mrkuxdby.us-east-1.elasticbeanstalk.com/](http://datastaxsassignment-env-1.eba-mrkuxdby.us-east-1.elasticbeanstalk.com/)
